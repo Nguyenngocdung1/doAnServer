@@ -6,7 +6,7 @@
 
  async function connect() {
    try {
-     await mongoose.connect("mongodb://localhost:27017/demographql", {
+     await mongoose.connect("mongodb+srv://grapshql:<dung0401>@cluster0.drhw6.mongodb.net/Cluster0?retryWrites=true&w=majority", {
        useNewUrlParser: true,
        useUnifiedTopology: true,
      });
