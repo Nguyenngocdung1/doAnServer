@@ -6,6 +6,9 @@ const AuthorSchema = new Schema(
     name: {
       type: String,
     },
+    slug: {
+      type: String,
+    },
     age: {
       type: Number,
     },

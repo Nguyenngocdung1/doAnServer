@@ -5,13 +5,18 @@ const BookSchema = new Schema(
   {
     name: {
       type: String,
+      require: true,
+    },
+    slug: {
+      type: String,
+      require: true,
     },
     genre: {
       type: String,
     },
     image: {
       type: String,
-      default: 'https://daihoctantrao.edu.vn/media/news/s%C3%A1ch.jpg',
+      default: 'https://i.imgur.com/NVRNzyf.jpg',
     },
     des: {
       type: String,

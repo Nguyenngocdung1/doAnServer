@@ -9,12 +9,14 @@ const typeDefs = gql`
         genre: String,
         image: String,
         des: String,
+        slug: String,
         field: String,
         author: Author
     }
     type Author {
         id: ID!,
         name: String,
+        slug: String,
         age: Int,
         field: String,
         address: String,
@@ -35,8 +37,8 @@ const typeDefs = gql`
 
     # TYPE: Thêm vào cơ sở dữ liệu
     type Mutation {
-        createAuthor( name: String, age: Int, address: String, email: String, phone: String, field: String): Author,
-        createBook( name: String, genre: String, authorId: ID!,image: String, des: String,  field: String): Book,
+        createAuthor( name: String, slug: String, age: Int, address: String, email: String, phone: String, field: String): Author,
+        createBook( name: String,slug: String, genre: String, authorId: ID!,image: String, des: String,  field: String): Book,
     }
     
 `
