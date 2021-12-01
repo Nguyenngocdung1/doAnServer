@@ -5,11 +5,10 @@ const BookSchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
     },
     slug: {
       type: String,
-      require: true,
+      lowercase: true,
     },
     genre: {
       type: String,
@@ -17,6 +16,9 @@ const BookSchema = new Schema(
     image: {
       type: String,
       default: 'https://i.imgur.com/NVRNzyf.jpg',
+    },
+    price: {
+      type: Number,
     },
     des: {
       type: String,

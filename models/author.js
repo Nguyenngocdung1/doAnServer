@@ -8,9 +8,7 @@ const AuthorSchema = new Schema(
     },
     slug: {
       type: String,
-    },
-    age: {
-      type: Number,
+      lowercase: true,
     },
     address: {
       type: String,

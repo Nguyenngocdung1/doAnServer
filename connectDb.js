@@ -15,5 +15,16 @@
      console.log(e);
    }
  }
+//  async function connect() {
+//   try {
+//     await mongoose.connect("mongodb://localhost:27017/demographql", {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     });
+//     console.log("Connect successfully");
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
  
  module.exports = { connect }
