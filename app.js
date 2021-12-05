@@ -3,7 +3,7 @@ import { ApolloServer} from 'apollo-server-express';
 import cors from 'cors';
 import morgan from 'morgan'
 // load schema & resolvers
-
+import 'reflect-metadata'
 import typeDefs from './schema/schema';
 import resolvers from './resolver/resolver';
 

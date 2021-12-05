@@ -12,31 +12,37 @@ const resolvers = {
     author: async (parent, { slug }, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getAuthorBySlug(slug);
     },
-    user: async (parent, args, { mongooseDataMethods }) => {
-      return await mongooseDataMethods.getUserByEmail(args.email);
-    } 
+    user: async (parent, {email}, { mongooseDataMethods }) => {
+      console.log('email', email);
+      return await mongooseDataMethods.getUserByEmail(email);
+    },
+    users: async (parent, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getUsers();
+    },
+
   },
   Book: {
     author: async ({ authorId }, args, { mongooseDataMethods }) => {
-      console.log(authorId);
       return await mongooseDataMethods.getAuthorById(authorId);
     },
   },
   Author: {
     books: async ({id}, args, { mongooseDataMethods }) => {
-      console.log(id);
       return await mongooseDataMethods.getAllBooks({ authorId: id });
     },
   },
-
-
-
   // MUTATION
 
   Mutation: {
     createAuthor: async (parent, args, { mongooseDataMethods }) => {
       console.log(args);
       await mongooseDataMethods.createAuthor(args);
+    },
+    updateAuthor: async (parent, args, { mongooseDataMethods }) => {
+      await mongooseDataMethods.updateAuthor(args);
+    },
+    deleteAuthor: async (parent, args, { mongooseDataMethods }) => {
+      await mongooseDataMethods.deleteAuthor(args);
     },
     createBook: async (parent, args, { mongooseDataMethods }) => {
       console.log(args);
@@ -47,10 +53,13 @@ const resolvers = {
       await mongooseDataMethods.updateBook(args);
     },
     deleteBook: async (parent, args, { mongooseDataMethods}) => {
-      await mongooseDataMethods.deleteBook(args.id);
+      await mongooseDataMethods.deleteBook(args);
     },
     createUser: async (parent, args, { mongooseDataMethods}) => {
-      await mongooseDataMethods.signInUser(args);
+      await mongooseDataMethods.signUpUser(args);
+    },
+    createOrder: async (parent, args, { mongooseDataMethods}) => {
+      await mongooseDataMethods.createOrder(args);
     }
   },
 };

@@ -14,12 +14,9 @@ const AuthorSchema = new Schema(
       type: String,
     },
     phone: {
-      type: String,
+      type: Number,
     },
     email: {
-      type: String,
-    },
-    field: {
       type: String,
     },
   },

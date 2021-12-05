@@ -26,9 +26,6 @@ const BookSchema = new Schema(
     authorId: {
       type: String,
     },
-    field: {
-      type: String
-    }
   },
   {
     collection: "books",
