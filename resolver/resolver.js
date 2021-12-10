@@ -19,7 +19,12 @@ const resolvers = {
     users: async (parent, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getUsers();
     },
-
+    orders : async (parent, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getOrders();
+    },
+    order: async (parent, {id}, { mongooseDataMethods}) => {
+      return await mongooseDataMethods.getOrderById(id);
+    }
   },
   Book: {
     author: async ({ authorId }, args, { mongooseDataMethods }) => {

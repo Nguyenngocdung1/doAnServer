@@ -53,18 +53,21 @@ const typeDefs = gql`
         avatar: String,
         role: Int
     }
-
-    type OrderDetail {
-        book: Book,
-        quantily: Int,
+    input OrderInput{
+        listOrder: String,
+        name: String,
+        email: String,
+        address: String, 
+        phone: Int,
     }
 
     type Order {
         id: ID!,
-        listOrder: [OrderDetail!]!,
+        name: String,
+        listOrder: String,
         email: String,
         address: String, 
-        phone: String,
+        phone: Int,
     }
 
     # ROOT TYPE : gốc của loại yêu cầu truy suất dữ liệu
@@ -91,7 +94,7 @@ const typeDefs = gql`
         deleteBook( id: ID!): Book,
         deleteAuthor( id: ID!): Author,
         createUser( input: UserInput): User,
-        createOrder : Order,
+        createOrder(input: OrderInput): Order,
     }
 `
 

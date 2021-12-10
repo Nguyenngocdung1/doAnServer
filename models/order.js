@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
+    name: {
+      type: String,
+    },
     email: {
       type: String,
     },
@@ -12,12 +15,9 @@ const OrderSchema = new Schema(
     address: {
       type: String,
     },
-    listOrder: [
-      {
-         bookId: String,
-         quantity: Number
-      }
-    ]
+    listOrder: {
+      type: String,
+    },
   },
   {
     collection: "orders",
