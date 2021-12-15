@@ -59,6 +59,7 @@ const typeDefs = gql`
         email: String,
         address: String, 
         phone: Int,
+        status: Int
     }
 
     type Order {
@@ -68,6 +69,10 @@ const typeDefs = gql`
         email: String,
         address: String, 
         phone: Int,
+        status: Int,
+        date: String,
+        comments: String,
+        danhgia: Int
     }
 
     # ROOT TYPE : gốc của loại yêu cầu truy suất dữ liệu
@@ -78,7 +83,7 @@ const typeDefs = gql`
         author (slug: String!): Author,
         users: [User],
         user (email: String!): User,
-        orders: [Order],
+        orders(email: String): [Order],
         order (id: ID!): Order,
     }
     
@@ -95,6 +100,10 @@ const typeDefs = gql`
         deleteAuthor( id: ID!): Author,
         createUser( input: UserInput): User,
         createOrder(input: OrderInput): Order,
+        updateStatusOrder(id: ID!, status: Int): Order,
+        deleteStatusOrder(id: ID!): Order,
+        danhGiaOrder( id: ID!, comments: String, danhgia: Int ): Order,
+        login(email: String, name: String): User
     }
 `
 

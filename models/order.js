@@ -18,6 +18,20 @@ const OrderSchema = new Schema(
     listOrder: {
       type: String,
     },
+    date: {
+      type: String,
+      default: new Date().toISOString().slice(0, 10),
+    },
+    status: {
+      type: Number
+    },
+    danhgia: {
+      type: Number,
+      default: 0
+    },
+    comments: {
+      type: String
+    }
   },
   {
     collection: "orders",

@@ -20,11 +20,11 @@ const resolvers = {
       return await mongooseDataMethods.getUsers();
     },
     orders : async (parent, args, { mongooseDataMethods }) => {
-      return await mongooseDataMethods.getOrders();
+      return await mongooseDataMethods.getOrders(args);
     },
     order: async (parent, {id}, { mongooseDataMethods}) => {
       return await mongooseDataMethods.getOrderById(id);
-    }
+    },
   },
   Book: {
     author: async ({ authorId }, args, { mongooseDataMethods }) => {
@@ -41,30 +41,42 @@ const resolvers = {
   Mutation: {
     createAuthor: async (parent, args, { mongooseDataMethods }) => {
       console.log(args);
-      await mongooseDataMethods.createAuthor(args);
+      return await mongooseDataMethods.createAuthor(args);
     },
     updateAuthor: async (parent, args, { mongooseDataMethods }) => {
-      await mongooseDataMethods.updateAuthor(args);
+      return await mongooseDataMethods.updateAuthor(args);
     },
     deleteAuthor: async (parent, args, { mongooseDataMethods }) => {
-      await mongooseDataMethods.deleteAuthor(args);
+      return await mongooseDataMethods.deleteAuthor(args);
     },
     createBook: async (parent, args, { mongooseDataMethods }) => {
       console.log(args);
-      await mongooseDataMethods.createBook(args);
+      return await mongooseDataMethods.createBook(args);
     },
     updateBook: async (parent, args, { mongooseDataMethods}) => {
       console.log('updtae', args)
-      await mongooseDataMethods.updateBook(args);
+      return await mongooseDataMethods.updateBook(args);
     },
     deleteBook: async (parent, args, { mongooseDataMethods}) => {
-      await mongooseDataMethods.deleteBook(args);
+      return await mongooseDataMethods.deleteBook(args);
     },
     createUser: async (parent, args, { mongooseDataMethods}) => {
-      await mongooseDataMethods.signUpUser(args);
+      return await mongooseDataMethods.signUpUser(args);
     },
     createOrder: async (parent, args, { mongooseDataMethods}) => {
-      await mongooseDataMethods.createOrder(args);
+      return await mongooseDataMethods.createOrder(args);
+    },
+    updateStatusOrder: async (parent, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.updateStatusOrder(args);
+    },
+    deleteStatusOrder: async (parent, args, { mongooseDataMethods}) => {
+      return await mongooseDataMethods.deleteStatusOrder(args);
+    },
+    danhGiaOrder: async (parent, args, { mongooseDataMethods}) => {
+      return await mongooseDataMethods.danhGiaOrder(args);
+    },
+    login : async (parent, args, { mongooseDataMethods}) => {
+      return await mongooseDataMethods.login(args);
     }
   },
 };

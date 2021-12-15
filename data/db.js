@@ -5,8 +5,8 @@ const slugify = require("slugify");
 const Order = require("../models/order");
 var nodemailer = require("nodemailer");
 const mongooseDataMethods = {
-  getAllBooks: async (conditions = null) => {
-    return await Book.find(conditions);
+  getAllBooks: async () => {
+    return await Book.find();
   }, //get all books
   getBookById: async (id) => await Book.findById(id), // get a book by slug
   getBookBySlug: async (slug) => await Book.findOne({ slug: slug }), // get a book by slug
@@ -37,7 +37,8 @@ const mongooseDataMethods = {
     // create a new author
     const newAuthor = new Author(args.input);
     newAuthor.slug = slugify(newAuthor.name);
-    return await newAuthor.save();
+    await newAuthor.save();
+    return newAuthor;
   },
   deleteAuthor: async (args) => {
     const BookUpdateConditions = { _id: args.id };
@@ -54,7 +55,8 @@ const mongooseDataMethods = {
   getUsers: async () => await User.find(),
   signUpUser: async (args) => {
     const newUser = new User(args.input);
-    return await newUser.save();
+    await newUser.save()
+    return newUser;
   },
   createOrder: async (args) => {
     const order = new Order(args.input);
@@ -1257,17 +1259,49 @@ const mongooseDataMethods = {
             </html>
             `,
     };
-
     transporter.sendMail(mailOptions, async (error, info) => {
       if (error) {
         console.log(error);
       } else {
       }
     });
-    return await order.save();
+    await order.save()
+    return order;
   },
-  getOrders: async () => await Order.find(),
-  getOrderById: async (id) => await Order.findById(id), 
+  getOrders: async ({email}) => {
+    if(email){
+      return await Order.find({ email: email})
+    }else{
+      return await Order.find()
+    }
+  },
+  getOrderById: async (id) => await Order.findById(id),
+  updateStatusOrder: async ({id, status}) => {
+    const BookUpdateConditions = { _id: id };
+    return await Order.findOneAndUpdate(BookUpdateConditions, {status: status + 1}, {
+      new: true,
+    });
+  },
+  deleteStatusOrder : async ({id}) => {
+    const BookUpdateConditions = { _id: id };
+    return await Order.findOneAndUpdate(BookUpdateConditions, {status: 5}, {
+      new: true,
+    });
+  },
+  danhGiaOrder: async ({id, comments, danhgia}) => {
+    const BookUpdateConditions = { _id: id };
+    return await Order.findOneAndUpdate(BookUpdateConditions, {comments, danhgia}, {
+      new: true,
+    });
+  },
+  login : async ({email, name}) => {
+    const user = await User.findOne({ email: email, name: name})
+    if(user){
+      return user
+    }else{
+      return false
+    }
+  }
 };
 
 module.exports = mongooseDataMethods;
