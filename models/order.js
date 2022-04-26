@@ -25,7 +25,7 @@ const OrderSchema = new Schema(
     status: {
       type: Number
     },
-    danhgia: {
+    rating: {
       type: Number,
       default: 0
     },

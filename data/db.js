@@ -11,6 +11,7 @@ const mongooseDataMethods = {
     return await Book.find();
   }, //get all books
   getBookById: async (id) => await Book.findById(id), // get a book by slug
+  getGenreById: async (id) => await Genre.findById(id), // get a genre by slug
   getBookBySlug: async (slug) => await Book.findOne({ slug: slug }), // get a book by slug
   getAllGenres: async () => await Genre.find(), //get all genres
   getGenreBySlug: async (slug) => await Genre.findOne({ slug: slug }), // get a book by slug

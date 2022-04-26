@@ -10,7 +10,7 @@ const BookSchema = new Schema(
       type: String,
       lowercase: true,
     },
-    genre: {
+    genreId: {
       type: String,
     },
     image: {
@@ -22,6 +22,10 @@ const BookSchema = new Schema(
     },
     des: {
       type: String,
+    },
+    quantity: {
+      type: Number,
+      default: 0,
     },
     authorId: {
       type: String,

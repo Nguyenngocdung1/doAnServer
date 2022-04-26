@@ -13,11 +13,8 @@ const AuthorSchema = new Schema(
     address: {
       type: String,
     },
-    phone: {
+    age: {
       type: Number,
-    },
-    email: {
-      type: String,
     },
   },
   {

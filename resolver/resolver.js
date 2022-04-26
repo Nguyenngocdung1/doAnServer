@@ -40,10 +40,18 @@ const resolvers = {
     author: async ({ authorId }, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getAuthorById(authorId);
     },
+    genre: async ({ genreId }, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getGenreById(genreId);
+    },
   },
   Author: {
     books: async ({id}, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getAllBooks({ authorId: id });
+    },
+  },
+  Genre: {
+    books: async ({id}, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getAllBooks({ genreId: id });
     },
   },
   // MUTATION
@@ -64,7 +72,7 @@ const resolvers = {
       return await mongooseDataMethods.deleteAuthor(args);
     },
     createBook: async (parent, args, { mongooseDataMethods }) => {
-      console.log(args);
+      console.log(" sadsadas" ,args);
       return await mongooseDataMethods.createBook(args);
     },
     updateBook: async (parent, args, { mongooseDataMethods}) => {

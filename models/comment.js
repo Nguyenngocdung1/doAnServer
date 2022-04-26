@@ -3,25 +3,17 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema(
   {
-    name: {
+    userId: {
       type: String,
-    },
-    email: {
-      type: String,
-    },
-    avatar: {
-      type: String,
-      default: "https://cdn-icons-png.flaticon.com/512/219/219983.png",
-    },
-    comment: {
-      type: String,
-    },
-    danhgia: {
-      type: Number,
-      default: 5,
     },
     bookId: {
       type: String,
+    },
+    content: {
+      type: String,
+    },
+    icon: {
+      type: Number,
     },
   },
   {

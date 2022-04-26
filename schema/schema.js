@@ -6,35 +6,35 @@ const typeDefs = gql`
     type Book {
         id: ID!,
         name: String,
-        genre: String,
         image: String,
         des: String,
         slug: String,
+        quantity: Int,
         price: Int,
-        author: Author
+        author: Author,
+        genre: Genre,
     }
 
     input BookInput {
         name: String,
-        genre: String,
+        genreId: ID!,
         image: String,
         des: String,
         price: Int,
+        quantity: Int,
         authorId: ID!
     }
     input AuthorInput {
         name: String,
         address: String,
-        phone: Int,
-        email: String,
+        age: Int,
     }
     type Author {
         id: ID!,
         name: String,
         slug: String,
         address: String,
-        phone: Int,
-        email: String,
+        age: String,
         books: [Book]
     }
     type User {
@@ -71,25 +71,21 @@ const typeDefs = gql`
         status: Int,
         date: String,
         comments: String,
-        danhgia: Int
+        rating: Int
     }
 
     type Comment {
         id: ID!,
-        name: String,
-        email: String,
-        comment: String,
-        avatar: String,
-        danhgia: String, 
+        userId: ID!,
         bookId: ID!,
+        content: String,
+        icon: Int,
     }
 
     input CommentInput {
-        name: String,
-        email: String,
-        comment: String,
-        avatar: String,
-        danhgia: Int, 
+        userId: ID!,
+        content: String,
+        icon: Int,
         bookId: ID!,
     }
 
@@ -99,7 +95,8 @@ const typeDefs = gql`
     type Genre {
         id: ID!,
         name: String,
-        slug: String
+        slug: String,
+        books: [Book]
     }
 
     # ROOT TYPE : gốc của loại yêu cầu truy suất dữ liệu

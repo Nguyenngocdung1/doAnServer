@@ -37,7 +37,7 @@ async function startServer() {
 startServer();
 
 
-const port = process.env.POST || 8866;
+const port = process.env.POST || 8890;
 
 app.listen({port}, () => {
     console.log(`Server listening on http://localhost:${port}${server.graphqlPath}`)
