@@ -3,6 +3,13 @@ const resolvers = {
     books: async (parent, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getAllBooks();
     },
+    genres: async (parent, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getAllGenres();
+    },
+    genre: async (parent, { slug }, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getGenreBySlug(slug);
+    },
+    
     book: async (parent, { slug }, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getBookBySlug(slug);
     },
@@ -45,6 +52,10 @@ const resolvers = {
     createAuthor: async (parent, args, { mongooseDataMethods }) => {
       console.log(args);
       return await mongooseDataMethods.createAuthor(args);
+    },
+    createGenre: async (parent, args, { mongooseDataMethods }) => {
+      console.log(args);
+      return await mongooseDataMethods.createGenre(args);
     },
     updateAuthor: async (parent, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.updateAuthor(args);

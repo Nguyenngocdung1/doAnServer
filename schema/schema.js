@@ -13,6 +13,7 @@ const typeDefs = gql`
         price: Int,
         author: Author
     }
+
     input BookInput {
         name: String,
         genre: String,
@@ -27,7 +28,6 @@ const typeDefs = gql`
         phone: Int,
         email: String,
     }
-
     type Author {
         id: ID!,
         name: String,
@@ -37,7 +37,6 @@ const typeDefs = gql`
         email: String,
         books: [Book]
     }
-
     type User {
         id: ID!,
         name: String,
@@ -94,6 +93,14 @@ const typeDefs = gql`
         bookId: ID!,
     }
 
+    input GenreInput {
+        name: String,
+    }
+    type Genre {
+        id: ID!,
+        name: String,
+        slug: String
+    }
 
     # ROOT TYPE : gốc của loại yêu cầu truy suất dữ liệu
     type Query {
@@ -105,7 +112,9 @@ const typeDefs = gql`
         user (email: String!): User,
         orders(email: String): [Order],
         order (id: ID!): Order,
-        comments(bookId: ID!): [Comment]
+        comments(bookId: ID!): [Comment],
+        genres: [Genre],
+        genre (slug: String!): Genre,
     }
     
 
@@ -114,6 +123,7 @@ const typeDefs = gql`
     # TYPE: Thêm vào cơ sở dữ liệu
     type Mutation {
         createAuthor( input: AuthorInput): Author,
+        createGenre( input: GenreInput): Genre,
         updateAuthor( id: ID!, input: AuthorInput): Author,
         createBook( input: BookInput): Book,
         updateBook( id: ID!, input: BookInput): Book,

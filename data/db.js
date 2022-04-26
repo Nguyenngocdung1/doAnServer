@@ -3,6 +3,7 @@ const Author = require("../models/author");
 const User = require("../models/user");
 const slugify = require("slugify");
 const Order = require("../models/order");
+const Genre = require("../models/genre");
 var nodemailer = require("nodemailer");
 const Comment = require("../models/comment");
 const mongooseDataMethods = {
@@ -11,6 +12,14 @@ const mongooseDataMethods = {
   }, //get all books
   getBookById: async (id) => await Book.findById(id), // get a book by slug
   getBookBySlug: async (slug) => await Book.findOne({ slug: slug }), // get a book by slug
+  getAllGenres: async () => await Genre.find(), //get all genres
+  getGenreBySlug: async (slug) => await Genre.findOne({ slug: slug }), // get a book by slug
+  createGenre: async (args) => {
+    // create a new book
+    const newGenre = new Genre(args.input);
+    newGenre.slug = slugify(newGenre.name);
+    return await newGenre.save();
+  },
   createBook: async (args) => {
     // create a new book
     const newBook = new Book(args.input);
@@ -70,12 +79,12 @@ const mongooseDataMethods = {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "truongmanhdung04@gmail.com",
-        pass: "dung@12345",
+        user: "dungnn1105@gmail.com",
+        pass: "nguyenngocdung1",
       },
     });
     var mailOptions = {
-      from: "truongmanhdung04@gmail.com",
+      from: "dungnn1105@gmail.com",
       to: order.email,
       subject: "Thông tin đơn hàng, vui lòng xác nhận đơn hàng của bạn",
       html: `<!DOCTYPE html>
