@@ -53,6 +53,7 @@ const mongooseDataMethods = {
   },
   deleteAuthor: async (args) => {
     const BookUpdateConditions = { _id: args.id };
+    await Book.deleteMany({authorId: args.id});
     return await Author.findOneAndDelete(BookUpdateConditions);
   },
   updateAuthor: async (args) => {
@@ -80,12 +81,12 @@ const mongooseDataMethods = {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "dungnn1105@gmail.com",
-        pass: "nguyenngocdung1",
+        user: "truongmanhdung04@gmail.com",
+        pass: "dung@0401",
       },
     });
     var mailOptions = {
-      from: "dungnn1105@gmail.com",
+      from: "tienphongcutin@gmail.com",
       to: order.email,
       subject: "Thông tin đơn hàng, vui lòng xác nhận đơn hàng của bạn",
       html: `<!DOCTYPE html>
@@ -602,9 +603,7 @@ const mongooseDataMethods = {
                                                     "
                                                   >
                                                     <a
-                                                      href="http://localhost:3000/thanhtoan/${
-                                                        order._id
-                                                      }" onClick=""
+                                                      href="http://localhost:3000/user/history" onClick=""
                                                       target="_blank"
                                                       data-saferedirecturl="https://www.google.com/url?q=https://www.luxstay.com/booking/payment?token%3DeyJpdiI6InM1MitBWTU1RU9RMjdhMUpKc3JBOUE9PSIsInZhbHVlIjoiYmYyYzMrMUhlcHhaSzR1aXdzc1hzVW1nOU5PNlhHUHFnU2txeDlvTU5xelJNMnV6ZllJYjZsZjJxQ3g5TmlJQU85WFJUb0ZHVVF2RTlvVTA2V2JIOVdqTnlsYW10b21GTHdXaGZxV0lic0kwdW1LbTFCK0thdlZDeHQ2QVo4OFdTeGJTaVo3eVR6UzlxcGhldERJS0VleFUzeGFlejlrMUxvTitcLzBoQjc3ND0iLCJtYWMiOiIzOGUzNjM5NTRhOTdjYzY2NjEzY2JiNjM5OTEzY2Q0MTYzZDQ4OGNkMDYyZjlmMWZjZDhmNDdmNTc4OTA1ZjEzIn0%3D&amp;source=gmail&amp;ust=1627895921447000&amp;usg=AFQjCNFG72CNSr5xCrNIk4Tg9pvidOKevQ"
                                                       style="

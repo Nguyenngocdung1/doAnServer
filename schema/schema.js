@@ -17,7 +17,7 @@ const typeDefs = gql`
 
     input BookInput {
         name: String,
-        genreId: ID!,
+        genreId: String,
         image: String,
         des: String,
         price: Int,
