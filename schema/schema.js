@@ -76,14 +76,14 @@ const typeDefs = gql`
 
     type Comment {
         id: ID!,
-        userId: ID!,
-        bookId: ID!,
+        user: User,
+        book: Book,
         content: String,
         icon: Int,
     }
 
     input CommentInput {
-        userId: ID!,
+        email: String,
         content: String,
         icon: Int,
         bookId: ID!,
@@ -126,9 +126,12 @@ const typeDefs = gql`
         updateBook( id: ID!, input: BookInput): Book,
         deleteBook( id: ID!): Book,
         deleteAuthor( id: ID!): Author,
+        deleteGenre( id: ID!): Genre,
         createUser( input: UserInput): User,
         createOrder(input: OrderInput): Order,
         updateStatusOrder(id: ID!, status: Int): Order,
+        updateCommentStatus(id: ID!, icon: Int): Comment,
+        deleteComment(id: ID!): Comment,
         deleteStatusOrder(id: ID!): Order,
         danhGiaOrder( id: ID!, comments: String, danhgia: Int ): Order,
         login(email: String, name: String): User,

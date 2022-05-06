@@ -44,6 +44,14 @@ const resolvers = {
       return await mongooseDataMethods.getGenreById(genreId);
     },
   },
+  Comment: {
+    book: async ({ bookId }, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getBookById(bookId);
+    },
+    user: async ({ email }, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getUserByEmail(email);
+    },
+  },
   Author: {
     books: async ({id}, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getAllBooks({ authorId: id });
@@ -54,6 +62,7 @@ const resolvers = {
       return await mongooseDataMethods.getAllBooks({ genreId: id });
     },
   },
+
   // MUTATION
 
   Mutation: {
@@ -70,6 +79,9 @@ const resolvers = {
     },
     deleteAuthor: async (parent, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.deleteAuthor(args);
+    },
+    deleteGenre: async (parent, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.deleteGenre(args);
     },
     createBook: async (parent, args, { mongooseDataMethods }) => {
       console.log(" sadsadas" ,args);
@@ -94,6 +106,9 @@ const resolvers = {
     deleteStatusOrder: async (parent, args, { mongooseDataMethods}) => {
       return await mongooseDataMethods.deleteStatusOrder(args);
     },
+    deleteComment: async (parent, args, { mongooseDataMethods}) => {
+      return await mongooseDataMethods.deleteComment(args);
+    },
     danhGiaOrder: async (parent, args, { mongooseDataMethods}) => {
       return await mongooseDataMethods.danhGiaOrder(args);
     },
@@ -102,7 +117,10 @@ const resolvers = {
     },
     createComment : async (parent, args, { mongooseDataMethods}) => {
       return await mongooseDataMethods.createComment(args);
-    }
+    },
+    updateCommentStatus : async (parent, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.updateCommentStatus(args);
+    },
   },
 };
 

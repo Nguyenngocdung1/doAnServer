@@ -21,6 +21,20 @@ const mongooseDataMethods = {
     newGenre.slug = slugify(newGenre.name);
     return await newGenre.save();
   },
+  updateCommentStatus: async ({ id, icon }) => {
+    const CommentUpdateConditions = { _id: id };
+    return await Comment.findOneAndUpdate(
+      CommentUpdateConditions,
+      { icon},
+      {
+        new: true,
+      }
+    );
+  },
+  deleteComment: async (args) => {
+    const BookUpdateConditions = { _id: args.id };
+    return await Comment.findOneAndDelete(BookUpdateConditions);
+  },
   createBook: async (args) => {
     // create a new book
     const newBook = new Book(args.input);
@@ -55,6 +69,11 @@ const mongooseDataMethods = {
     const BookUpdateConditions = { _id: args.id };
     await Book.deleteMany({authorId: args.id});
     return await Author.findOneAndDelete(BookUpdateConditions);
+  },
+  deleteGenre: async (args) => {
+    const BookUpdateConditions = { _id: args.id };
+    await Book.deleteMany({genreId: args.id});
+    return await Genre.findOneAndDelete(BookUpdateConditions);
   },
   updateAuthor: async (args) => {
     const BookUpdateConditions = { _id: args.id };
