@@ -83,6 +83,7 @@ const mongooseDataMethods = {
     });
   },
   getUserByEmail: async (email) => await User.findOne({ email: email }),
+  getUserByUserId: async (userId) => await User.findOne({ _id: userId }),
   getUsers: async () => await User.find(),
   signUpUser: async (args) => {
     const newUser = new User(args.input);
@@ -1340,14 +1341,13 @@ const mongooseDataMethods = {
     }
   },
   createComment: async (args) => {
+    console.log(args);
     const newAuthor = new Comment(args.input);
     await newAuthor.save();
     return newAuthor;
   },
-  getComments: async ( bookId) => {
-    if (bookId) {
-      return await Comment.find({ bookId: bookId });
-    }
+  getComments: async () => {
+      return await Comment.find();
   },
 };
 

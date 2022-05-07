@@ -48,8 +48,8 @@ const resolvers = {
     book: async ({ bookId }, args, { mongooseDataMethods }) => {
       return await mongooseDataMethods.getBookById(bookId);
     },
-    user: async ({ email }, args, { mongooseDataMethods }) => {
-      return await mongooseDataMethods.getUserByEmail(email);
+    user: async ({ userId }, args, { mongooseDataMethods }) => {
+      return await mongooseDataMethods.getUserByUserId(userId);
     },
   },
   Author: {
