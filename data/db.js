@@ -1341,14 +1341,19 @@ const mongooseDataMethods = {
     }
   },
   createComment: async (args) => {
-    console.log(args);
     const newAuthor = new Comment(args.input);
     await newAuthor.save();
     return newAuthor;
   },
-  getComments: async () => {
-      return await Comment.find();
+  getComments: async ( bookId) => {
+    if (bookId) {
+      return await Comment.find({ bookId: bookId });
+    }
   },
+  getAllComments: async () => {
+    return await Comment.find();
+  }
+  
 };
 
 module.exports = mongooseDataMethods;

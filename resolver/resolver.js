@@ -35,6 +35,9 @@ const resolvers = {
     comments: async (parent, {bookId}, { mongooseDataMethods}) => {
       return await mongooseDataMethods.getComments(bookId);
     },
+    comment: async (parent, arg, { mongooseDataMethods}) => {
+      return await mongooseDataMethods.getAllComments();
+    },
   },
   Book: {
     author: async ({ authorId }, args, { mongooseDataMethods }) => {

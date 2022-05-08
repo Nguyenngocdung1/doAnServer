@@ -86,7 +86,7 @@ const typeDefs = gql`
         userId: String,
         content: String,
         icon: Int,
-        bookId: ID!,
+        bookId: String,
     }
 
     input GenreInput {
@@ -110,6 +110,7 @@ const typeDefs = gql`
         orders(email: String): [Order],
         order (id: ID!): Order,
         comments(bookId: ID!): [Comment],
+        comment: [Comment]
         genres: [Genre],
         genre (slug: String!): Genre,
     }
