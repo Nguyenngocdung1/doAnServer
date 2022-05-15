@@ -25,7 +25,7 @@ const mongooseDataMethods = {
     const CommentUpdateConditions = { _id: id };
     return await Comment.findOneAndUpdate(
       CommentUpdateConditions,
-      { icon},
+      { icon },
       {
         new: true,
       }
@@ -44,10 +44,21 @@ const mongooseDataMethods = {
   updateBook: async (args) => {
     // update a book
     const BookUpdateConditions = { _id: args.id };
+    console.log(args);
     args.input.slug = slugify(args.input.name);
     return await Book.findOneAndUpdate(BookUpdateConditions, args.input, {
       new: true,
     });
+  },
+  updateQuantityBook: async (args) => {
+    // update a book
+    const BookUpdateConditions = { _id: args.id };
+    const m = args.input.count;
+    console.log('sadsa', m);
+    return await Book.findOneAndUpdate(
+      BookUpdateConditions,
+      { quantity: quantity - args.input.count },
+      );
   },
   deleteBook: async (args) => {
     // delete a book

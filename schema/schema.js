@@ -24,6 +24,11 @@ const typeDefs = gql`
         quantity: Int,
         authorId: ID!
     }
+
+    input BookQuantityInput {
+        count: Int,
+    }
+
     input AuthorInput {
         name: String,
         address: String,
@@ -125,6 +130,7 @@ const typeDefs = gql`
         updateAuthor( id: ID!, input: AuthorInput): Author,
         createBook( input: BookInput): Book,
         updateBook( id: ID!, input: BookInput): Book,
+        updateQuantityBook(id: ID!, input: BookQuantityInput): Book,
         deleteBook( id: ID!): Book,
         deleteAuthor( id: ID!): Author,
         deleteGenre( id: ID!): Genre,

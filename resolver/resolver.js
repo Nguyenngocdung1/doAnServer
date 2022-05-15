@@ -91,8 +91,12 @@ const resolvers = {
       return await mongooseDataMethods.createBook(args);
     },
     updateBook: async (parent, args, { mongooseDataMethods}) => {
-      console.log('updtae', args)
+      console.log(args);
       return await mongooseDataMethods.updateBook(args);
+    },
+    updateQuantityBook:  async (parent, args, { mongooseDataMethods}) => {
+      console.log(args.input.count);
+      return await mongooseDataMethods.updateQuantityBook(args);
     },
     deleteBook: async (parent, args, { mongooseDataMethods}) => {
       return await mongooseDataMethods.deleteBook(args);
