@@ -88,7 +88,7 @@ const typeDefs = gql`
     }
 
     input CommentInput {
-        userId: String,
+        email: String,
         content: String,
         icon: Int,
         bookId: String,

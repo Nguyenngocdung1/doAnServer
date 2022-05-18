@@ -57,7 +57,7 @@ const mongooseDataMethods = {
     console.log('sadsa', m);
     return await Book.findOneAndUpdate(
       BookUpdateConditions,
-      { quantity: quantity - args.input.count },
+      { quantity: args.input.count },
       );
   },
   deleteBook: async (args) => {
@@ -94,7 +94,10 @@ const mongooseDataMethods = {
     });
   },
   getUserByEmail: async (email) => await User.findOne({ email: email }),
-  getUserByUserId: async (userId) => await User.findOne({ _id: userId }),
+  getUserByUserId: async (userId) => {
+    console.log(userId);
+    return await User.findById(userId);
+  },
   getUsers: async () => await User.find(),
   signUpUser: async (args) => {
     const newUser = new User(args.input);
